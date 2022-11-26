@@ -6,26 +6,28 @@
 // ***********************************************
 
 // variable declaration
-def variable_1 = 1;
-def variable_2 = 2;
-def variable_str = "Hello World!";
+def variable_1 = 1
+def variable_2 = 2
+def variable_str = "Hello World!"
 
 // calculation
-def variable_3 = variable_1 + variable_2;
+def variable_3 = variable_1 + variable_2
 
 // output
-out(variable_str);
+out(variable_str)
 
 // condition
 if variable_3 == 3 {
-    out("variable is 3");
+    out("variable is 3")
 } else if variable_3 == 4 {
-    out("variable is 4");
+    out("variable is 4")
 } else {
-    out("variable is not 3 or 4");
+    out("variable is not 3 or 4")
 }
 
 // loop
-for i in 0..10 {
-    out(i);
+def i = 0
+for i < 10 {
+    out(i)
+    i = i + 1
 }
