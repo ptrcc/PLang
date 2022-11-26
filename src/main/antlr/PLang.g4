@@ -26,8 +26,7 @@ OR  : 'or' | '||' ;
 // keywords
 IF : 'if' ;
 ELSE : 'else' ;
-WHILE : 'while' ;
-FOR : 'for' ;
+LOOP : 'loop' ;
 DEF : 'def' ;
 
 // brackets
@@ -65,7 +64,7 @@ statement
     | variableAssignment
     | newVariableAssignment
     | if_
-    | for_
+    | loop
     | functionCall
     | COMMENT
     | NEWLINE; // shouldn't be here.. but it is
@@ -88,7 +87,7 @@ elseIf : ELSE IF expr funcBlock ;
 else_ : ELSE funcBlock ;
 
 // loops
-for_ : FOR expr funcBlock ;
+loop : LOOP expr funcBlock ;
 
 expr
     : left=expr op=(MUL | DIV) right=expr

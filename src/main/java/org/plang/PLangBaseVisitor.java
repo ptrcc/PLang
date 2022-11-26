@@ -123,7 +123,7 @@ public class PLangBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFor_(PLangParser.For_Context ctx) { return visitChildren(ctx); }
+	@Override public T visitLoop(PLangParser.LoopContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

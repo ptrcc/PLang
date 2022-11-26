@@ -32,10 +32,6 @@ class PLangContext(initialVariables: Map<String, Any?> = mapOf()) {
         return functionRegistry.callFunction(name, args)
     }
 
-    fun getFunction(name: String): Any {
-        return functionRegistry.getFunction(name)
-    }
-
     fun setVariable(name: String, value: Any?) {
         variables[name] = value
     }

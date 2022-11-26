@@ -158,15 +158,15 @@ public interface PLangListener extends ParseTreeListener {
 	 */
 	void exitElse_(PLangParser.Else_Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link PLangParser#for_}.
+	 * Enter a parse tree produced by {@link PLangParser#loop}.
 	 * @param ctx the parse tree
 	 */
-	void enterFor_(PLangParser.For_Context ctx);
+	void enterLoop(PLangParser.LoopContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PLangParser#for_}.
+	 * Exit a parse tree produced by {@link PLangParser#loop}.
 	 * @param ctx the parse tree
 	 */
-	void exitFor_(PLangParser.For_Context ctx);
+	void exitLoop(PLangParser.LoopContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link PLangParser#expr}.
 	 * @param ctx the parse tree

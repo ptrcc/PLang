@@ -1,13 +1,17 @@
 // Generated from java-escape by ANTLR 4.11.1
 package org.plang;
-import org.antlr.v4.runtime.atn.*;
-import org.antlr.v4.runtime.dfa.DFA;
+
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.misc.*;
-import org.antlr.v4.runtime.tree.*;
+import org.antlr.v4.runtime.atn.ATN;
+import org.antlr.v4.runtime.atn.ATNDeserializer;
+import org.antlr.v4.runtime.atn.ParserATNSimulator;
+import org.antlr.v4.runtime.atn.PredictionContextCache;
+import org.antlr.v4.runtime.dfa.DFA;
+import org.antlr.v4.runtime.tree.ParseTreeListener;
+import org.antlr.v4.runtime.tree.ParseTreeVisitor;
+import org.antlr.v4.runtime.tree.TerminalNode;
+
 import java.util.List;
-import java.util.Iterator;
-import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
 public class PLangParser extends Parser {
@@ -18,20 +22,20 @@ public class PLangParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, COMMENT=2, MUL=3, DIV=4, ADD=5, SUB=6, EXP=7, NEQ=8, GTE=9, LTE=10, 
-		GT=11, LT=12, EQ=13, AND=14, OR=15, IF=16, ELSE=17, WHILE=18, FOR=19, 
-		DEF=20, ROUND_LEFT=21, ROUND_RIGHT=22, SQUARE_LEFT=23, SQUARE_RIGHT=24, 
-		CURLY_LEFT=25, CURLY_RIGHT=26, TRUE=27, FALSE=28, NUMBER=29, STRINGLITERAL=30, 
-		ID=31, NEWLINE=32, WS=33, SEMI=34, SPACE=35, COMMA=36;
+		GT=11, LT=12, EQ=13, AND=14, OR=15, IF=16, ELSE=17, LOOP=18, DEF=19, ROUND_LEFT=20, 
+		ROUND_RIGHT=21, SQUARE_LEFT=22, SQUARE_RIGHT=23, CURLY_LEFT=24, CURLY_RIGHT=25, 
+		TRUE=26, FALSE=27, NUMBER=28, STRINGLITERAL=29, ID=30, NEWLINE=31, WS=32, 
+		SEMI=33, SPACE=34, COMMA=35;
 	public static final int
 		RULE_program = 0, RULE_block = 1, RULE_funcBlock = 2, RULE_statement = 3, 
 		RULE_stringLiteral = 4, RULE_number = 5, RULE_bool = 6, RULE_id = 7, RULE_functionCall = 8, 
 		RULE_variable = 9, RULE_newVariableAssignment = 10, RULE_variableAssignment = 11, 
-		RULE_if_ = 12, RULE_elseIf = 13, RULE_else_ = 14, RULE_for_ = 15, RULE_expr = 16;
+		RULE_if_ = 12, RULE_elseIf = 13, RULE_else_ = 14, RULE_loop = 15, RULE_expr = 16;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"program", "block", "funcBlock", "statement", "stringLiteral", "number", 
 			"bool", "id", "functionCall", "variable", "newVariableAssignment", "variableAssignment", 
-			"if_", "elseIf", "else_", "for_", "expr"
+			"if_", "elseIf", "else_", "loop", "expr"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -39,19 +43,19 @@ public class PLangParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'='", null, "'*'", "'/'", "'+'", "'-'", "'^'", "'<>'", "'>='", 
-			"'<='", "'>'", "'<'", "'=='", null, null, "'if'", "'else'", "'while'", 
-			"'for'", "'def'", "'('", "')'", "'['", "']'", "'{'", "'}'", "'true'", 
-			"'false'", null, null, null, null, null, "';'", "' '", "','"
+			"'<='", "'>'", "'<'", "'=='", null, null, "'if'", "'else'", "'loop'", 
+			"'def'", "'('", "')'", "'['", "']'", "'{'", "'}'", "'true'", "'false'", 
+			null, null, null, null, null, "';'", "' '", "','"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, "COMMENT", "MUL", "DIV", "ADD", "SUB", "EXP", "NEQ", "GTE", 
-			"LTE", "GT", "LT", "EQ", "AND", "OR", "IF", "ELSE", "WHILE", "FOR", "DEF", 
-			"ROUND_LEFT", "ROUND_RIGHT", "SQUARE_LEFT", "SQUARE_RIGHT", "CURLY_LEFT", 
-			"CURLY_RIGHT", "TRUE", "FALSE", "NUMBER", "STRINGLITERAL", "ID", "NEWLINE", 
-			"WS", "SEMI", "SPACE", "COMMA"
+			"LTE", "GT", "LT", "EQ", "AND", "OR", "IF", "ELSE", "LOOP", "DEF", "ROUND_LEFT", 
+			"ROUND_RIGHT", "SQUARE_LEFT", "SQUARE_RIGHT", "CURLY_LEFT", "CURLY_RIGHT", 
+			"TRUE", "FALSE", "NUMBER", "STRINGLITERAL", "ID", "NEWLINE", "WS", "SEMI", 
+			"SPACE", "COMMA"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -190,7 +194,7 @@ public class PLangParser extends Parser {
 			setState(40);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (((_la) & ~0x3f) == 0 && ((1L << _la) & 6444089348L) != 0) {
+			while (((_la) & ~0x3f) == 0 && ((1L << _la) & 3222077444L) != 0) {
 				{
 				{
 				setState(37);
@@ -279,8 +283,8 @@ public class PLangParser extends Parser {
 		public If_Context if_() {
 			return getRuleContext(If_Context.class,0);
 		}
-		public For_Context for_() {
-			return getRuleContext(For_Context.class,0);
+		public LoopContext loop() {
+			return getRuleContext(LoopContext.class,0);
 		}
 		public FunctionCallContext functionCall() {
 			return getRuleContext(FunctionCallContext.class,0);
@@ -345,7 +349,7 @@ public class PLangParser extends Parser {
 				enterOuterAlt(_localctx, 5);
 				{
 				setState(51);
-				for_();
+				loop();
 				}
 				break;
 			case 6:
@@ -614,7 +618,7 @@ public class PLangParser extends Parser {
 			setState(75);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (((_la) & ~0x3f) == 0 && ((1L << _la) & 4160749568L) != 0) {
+			if (((_la) & ~0x3f) == 0 && ((1L << _la) & 2080374784L) != 0) {
 				{
 				setState(67);
 				expr(0);
@@ -1002,41 +1006,41 @@ public class PLangParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class For_Context extends ParserRuleContext {
-		public TerminalNode FOR() { return getToken(PLangParser.FOR, 0); }
+	public static class LoopContext extends ParserRuleContext {
+		public TerminalNode LOOP() { return getToken(PLangParser.LOOP, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public FuncBlockContext funcBlock() {
 			return getRuleContext(FuncBlockContext.class,0);
 		}
-		public For_Context(ParserRuleContext parent, int invokingState) {
+		public LoopContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_for_; }
+		@Override public int getRuleIndex() { return RULE_loop; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PLangListener ) ((PLangListener)listener).enterFor_(this);
+			if ( listener instanceof PLangListener ) ((PLangListener)listener).enterLoop(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PLangListener ) ((PLangListener)listener).exitFor_(this);
+			if ( listener instanceof PLangListener ) ((PLangListener)listener).exitLoop(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PLangVisitor ) return ((PLangVisitor<? extends T>)visitor).visitFor_(this);
+			if ( visitor instanceof PLangVisitor ) return ((PLangVisitor<? extends T>)visitor).visitLoop(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final For_Context for_() throws RecognitionException {
-		For_Context _localctx = new For_Context(_ctx, getState());
-		enterRule(_localctx, 30, RULE_for_);
+	public final LoopContext loop() throws RecognitionException {
+		LoopContext _localctx = new LoopContext(_ctx, getState());
+		enterRule(_localctx, 30, RULE_loop);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(111);
-			match(FOR);
+			match(LOOP);
 			setState(112);
 			expr(0);
 			setState(113);
@@ -1297,7 +1301,7 @@ public class PLangParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001$\u008c\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001#\u008c\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
 		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
 		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0002"+
@@ -1318,8 +1322,8 @@ public class PLangParser extends Parser {
 		"\u0010\u0001\u0010\u0001\u0010\u0001\u0010\u0001\u0010\u0001\u0010\u0001"+
 		"\u0010\u0001\u0010\u0005\u0010\u0087\b\u0010\n\u0010\f\u0010\u008a\t\u0010"+
 		"\u0001\u0010\u0000\u0001 \u0011\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010"+
-		"\u0012\u0014\u0016\u0018\u001a\u001c\u001e \u0000\u0005\u0001\u0000\u001b"+
-		"\u001c\u0001\u0000\u0003\u0004\u0001\u0000\u0005\u0006\u0001\u0000\b\r"+
+		"\u0012\u0014\u0016\u0018\u001a\u001c\u001e \u0000\u0005\u0001\u0000\u001a"+
+		"\u001b\u0001\u0000\u0003\u0004\u0001\u0000\u0005\u0006\u0001\u0000\b\r"+
 		"\u0001\u0000\u000e\u000f\u008d\u0000\"\u0001\u0000\u0000\u0000\u0002("+
 		"\u0001\u0000\u0000\u0000\u0004+\u0001\u0000\u0000\u0000\u00067\u0001\u0000"+
 		"\u0000\u0000\b9\u0001\u0000\u0000\u0000\n;\u0001\u0000\u0000\u0000\f="+
@@ -1331,25 +1335,25 @@ public class PLangParser extends Parser {
 		"\u0000\u0000\u0001$\u0001\u0001\u0000\u0000\u0000%\'\u0003\u0006\u0003"+
 		"\u0000&%\u0001\u0000\u0000\u0000\'*\u0001\u0000\u0000\u0000(&\u0001\u0000"+
 		"\u0000\u0000()\u0001\u0000\u0000\u0000)\u0003\u0001\u0000\u0000\u0000"+
-		"*(\u0001\u0000\u0000\u0000+,\u0005\u0019\u0000\u0000,-\u0003\u0002\u0001"+
-		"\u0000-.\u0005\u001a\u0000\u0000.\u0005\u0001\u0000\u0000\u0000/8\u0003"+
+		"*(\u0001\u0000\u0000\u0000+,\u0005\u0018\u0000\u0000,-\u0003\u0002\u0001"+
+		"\u0000-.\u0005\u0019\u0000\u0000.\u0005\u0001\u0000\u0000\u0000/8\u0003"+
 		"\u0012\t\u000008\u0003\u0016\u000b\u000018\u0003\u0014\n\u000028\u0003"+
 		"\u0018\f\u000038\u0003\u001e\u000f\u000048\u0003\u0010\b\u000058\u0005"+
-		"\u0002\u0000\u000068\u0005 \u0000\u00007/\u0001\u0000\u0000\u000070\u0001"+
-		"\u0000\u0000\u000071\u0001\u0000\u0000\u000072\u0001\u0000\u0000\u0000"+
-		"73\u0001\u0000\u0000\u000074\u0001\u0000\u0000\u000075\u0001\u0000\u0000"+
-		"\u000076\u0001\u0000\u0000\u00008\u0007\u0001\u0000\u0000\u00009:\u0005"+
-		"\u001e\u0000\u0000:\t\u0001\u0000\u0000\u0000;<\u0005\u001d\u0000\u0000"+
-		"<\u000b\u0001\u0000\u0000\u0000=>\u0007\u0000\u0000\u0000>\r\u0001\u0000"+
-		"\u0000\u0000?@\u0005\u001f\u0000\u0000@\u000f\u0001\u0000\u0000\u0000"+
-		"AB\u0003\u000e\u0007\u0000BK\u0005\u0015\u0000\u0000CH\u0003 \u0010\u0000"+
-		"DE\u0005$\u0000\u0000EG\u0003 \u0010\u0000FD\u0001\u0000\u0000\u0000G"+
-		"J\u0001\u0000\u0000\u0000HF\u0001\u0000\u0000\u0000HI\u0001\u0000\u0000"+
+		"\u0002\u0000\u000068\u0005\u001f\u0000\u00007/\u0001\u0000\u0000\u0000"+
+		"70\u0001\u0000\u0000\u000071\u0001\u0000\u0000\u000072\u0001\u0000\u0000"+
+		"\u000073\u0001\u0000\u0000\u000074\u0001\u0000\u0000\u000075\u0001\u0000"+
+		"\u0000\u000076\u0001\u0000\u0000\u00008\u0007\u0001\u0000\u0000\u0000"+
+		"9:\u0005\u001d\u0000\u0000:\t\u0001\u0000\u0000\u0000;<\u0005\u001c\u0000"+
+		"\u0000<\u000b\u0001\u0000\u0000\u0000=>\u0007\u0000\u0000\u0000>\r\u0001"+
+		"\u0000\u0000\u0000?@\u0005\u001e\u0000\u0000@\u000f\u0001\u0000\u0000"+
+		"\u0000AB\u0003\u000e\u0007\u0000BK\u0005\u0014\u0000\u0000CH\u0003 \u0010"+
+		"\u0000DE\u0005#\u0000\u0000EG\u0003 \u0010\u0000FD\u0001\u0000\u0000\u0000"+
+		"GJ\u0001\u0000\u0000\u0000HF\u0001\u0000\u0000\u0000HI\u0001\u0000\u0000"+
 		"\u0000IL\u0001\u0000\u0000\u0000JH\u0001\u0000\u0000\u0000KC\u0001\u0000"+
 		"\u0000\u0000KL\u0001\u0000\u0000\u0000LM\u0001\u0000\u0000\u0000MN\u0005"+
-		"\u0016\u0000\u0000N\u0011\u0001\u0000\u0000\u0000OP\u0005\u0014\u0000"+
+		"\u0015\u0000\u0000N\u0011\u0001\u0000\u0000\u0000OP\u0005\u0013\u0000"+
 		"\u0000PQ\u0003\u000e\u0007\u0000Q\u0013\u0001\u0000\u0000\u0000RS\u0005"+
-		"\u0014\u0000\u0000ST\u0003\u000e\u0007\u0000TU\u0005\u0001\u0000\u0000"+
+		"\u0013\u0000\u0000ST\u0003\u000e\u0007\u0000TU\u0005\u0001\u0000\u0000"+
 		"UV\u0003 \u0010\u0000V\u0015\u0001\u0000\u0000\u0000WX\u0003\u000e\u0007"+
 		"\u0000XY\u0005\u0001\u0000\u0000YZ\u0003 \u0010\u0000Z\u0017\u0001\u0000"+
 		"\u0000\u0000[\\\u0005\u0010\u0000\u0000\\]\u0003 \u0010\u0000]a\u0003"+
@@ -1360,7 +1364,7 @@ public class PLangParser extends Parser {
 		"\u0000\u0000\u0000gh\u0005\u0011\u0000\u0000hi\u0005\u0010\u0000\u0000"+
 		"ij\u0003 \u0010\u0000jk\u0003\u0004\u0002\u0000k\u001b\u0001\u0000\u0000"+
 		"\u0000lm\u0005\u0011\u0000\u0000mn\u0003\u0004\u0002\u0000n\u001d\u0001"+
-		"\u0000\u0000\u0000op\u0005\u0013\u0000\u0000pq\u0003 \u0010\u0000qr\u0003"+
+		"\u0000\u0000\u0000op\u0005\u0012\u0000\u0000pq\u0003 \u0010\u0000qr\u0003"+
 		"\u0004\u0002\u0000r\u001f\u0001\u0000\u0000\u0000st\u0006\u0010\uffff"+
 		"\uffff\u0000ty\u0003\f\u0006\u0000uy\u0003\n\u0005\u0000vy\u0003\b\u0004"+
 		"\u0000wy\u0003\u000e\u0007\u0000xs\u0001\u0000\u0000\u0000xu\u0001\u0000"+

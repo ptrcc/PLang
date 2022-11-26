@@ -101,11 +101,11 @@ public interface PLangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitElse_(PLangParser.Else_Context ctx);
 	/**
-	 * Visit a parse tree produced by {@link PLangParser#for_}.
+	 * Visit a parse tree produced by {@link PLangParser#loop}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFor_(PLangParser.For_Context ctx);
+	T visitLoop(PLangParser.LoopContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PLangParser#expr}.
 	 * @param ctx the parse tree

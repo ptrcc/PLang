@@ -1,4 +1,6 @@
-package org.plang
+package org.plang.ast
+
+import org.plang.PLangContext
 
 abstract class AST {
 

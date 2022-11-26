@@ -1,6 +1,5 @@
 package org.plang.ast
 
-import org.plang.AST
 import org.plang.PLangContext
 
 class ID(private var id: String) : AST() {
