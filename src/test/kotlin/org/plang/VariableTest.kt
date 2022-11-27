@@ -50,6 +50,7 @@ internal class VariableTest {
             def test_variable_mul = 2 * 3
             def test_variable_mul_1 = test_variable_mul * 2
             def test_variable_div = 10 / 2
+            def test_variable_brace = 3 * (5 + 4)
         """, ctx)
         assert(ctx.getVariables()["test_variable_add"] == 4.0)
         assert(ctx.getVariables()["test_variable_add_1"] == 7.0)
@@ -57,6 +58,7 @@ internal class VariableTest {
         assert(ctx.getVariables()["test_variable_mul"] == 6.0)
         assert(ctx.getVariables()["test_variable_mul_1"] == 12.0)
         assert(ctx.getVariables()["test_variable_div"] == 5.0)
+        assert(ctx.getVariables()["test_variable_brace"] == 27.0)
     }
 
     @Test

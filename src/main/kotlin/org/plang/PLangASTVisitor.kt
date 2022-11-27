@@ -43,14 +43,15 @@ class PLangASTVisitor : PLangBaseVisitor<List<AST>>() {
     }
 
     override fun visitExpr(ctx: PLangParser.ExprContext?): List<AST> {
-        if (ctx!!.children.count() == 1) {
-            return ctx.children.map { visit(it) }.flatten()
+        return if (ctx!!.children.count() == 1) {
+            ctx.children.map { visit(it) }.flatten()   // just one literal e.g. "string", 1108
+        } else if (ctx.nested != null) {
+            visit(ctx.nested)                          // nested expression e.g. (3 + 4)
+        } else {
+            val left = visit(ctx.left)[0]              // other expressions e.g. abc + 12
+            val right = visit(ctx.right)[0]
+            listOf(Expr(left, right, ctx.op.text))
         }
-
-        val left = visit(ctx.left)[0]
-        val right = visit(ctx.right)[0]
-
-        return listOf(Expr(left, right, ctx.op.text))
     }
 
     override fun visitId(ctx: PLangParser.IdContext?): List<AST> {
@@ -80,10 +81,7 @@ class PLangASTVisitor : PLangBaseVisitor<List<AST>>() {
         val condition = visit(ctx!!.expr())[0]
         val asts = visit(ctx.funcBlock())
         val else_ = if (ctx.else_() != null) super.visitElse_(ctx.else_()) else null
-        val elseIf = if (ctx.elseIf() != null) {
-            ctx.elseIf().map { visit(it) }.flatten()
-        } else null
-
+        val elseIf = if (ctx.elseIf() != null) ctx.elseIf().map { visit(it) }.flatten() else null
         return listOf(If(condition, asts, elseIf, else_))
     }
 

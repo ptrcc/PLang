@@ -50,6 +50,10 @@ println(result) // 3
 At the moment there is only one default function `out`.
 It prints the given argument to the console.
 
+## Examples
+
+You can see some examples in the `test` directory.
+
 ## Syntax
 
 ### Variables

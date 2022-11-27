@@ -1,7 +1,6 @@
 plugins {
-    // java version 11
     id("java")
-    id("org.jetbrains.kotlin.jvm").version("1.3.72")
+    id("org.jetbrains.kotlin.jvm") version "1.8.0-Beta"
     antlr
 }
 
@@ -14,11 +13,15 @@ repositories {
 
 tasks.generateGrammarSource {
     maxHeapSize = "64m"
-    arguments = arguments + listOf("-visitor", "-long-messages")
+    arguments = arguments + listOf("-visitor", "-long-messages", "-package", "org.plang")
     copy {
-        from("src/main/antlr4")
-        into("src/main/java/gen")
+        from("${buildDir}/generated-src/antlr/main")
+        into("src/main/java/org/plang")
     }
+}
+
+sourceSets.main {
+    java.srcDirs("src/main/java", "src/main/kotlin")
 }
 
 dependencies {
@@ -38,4 +41,10 @@ tasks.getByName<Test>("test") {
 
 tasks.compileKotlin {
     dependsOn(tasks.generateGrammarSource)
+}
+
+tasks.withType<Jar>() {
+    manifest {
+        attributes["Main-Class"] = "org.plang.MainKt"
+    }
 }

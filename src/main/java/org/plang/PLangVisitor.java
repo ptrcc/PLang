@@ -23,6 +23,12 @@ public interface PLangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBlock(PLangParser.BlockContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PLangParser#function}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunction(PLangParser.FunctionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PLangParser#funcBlock}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

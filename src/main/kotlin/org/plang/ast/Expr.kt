@@ -21,6 +21,11 @@ class Expr(
             ">=" -> return left.evaluate(ctx) as Double >= right.evaluate(ctx) as Double
             "<" -> return (left.evaluate(ctx) as Double) < right.evaluate(ctx) as Double
             "<=" -> return left.evaluate(ctx) as Double <= right.evaluate(ctx) as Double
+
+            "&&" -> return left.evaluate(ctx) as Boolean && right.evaluate(ctx) as Boolean
+            "and" -> return left.evaluate(ctx) as Boolean && right.evaluate(ctx) as Boolean
+            "||" -> return left.evaluate(ctx) as Boolean || right.evaluate(ctx) as Boolean
+            "or" -> return left.evaluate(ctx) as Boolean && right.evaluate(ctx) as Boolean
         }
         return Unit
     }

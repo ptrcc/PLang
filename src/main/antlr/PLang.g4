@@ -57,6 +57,8 @@ program: block EOF;
 
 block : statement* ;
 
+function: DEF name=id ROUND_LEFT (id (COMMA id)*)? ROUND_RIGHT funcBlock ;
+
 funcBlock: CURLY_LEFT block CURLY_RIGHT ;
 
 statement
@@ -65,6 +67,7 @@ statement
     | newVariableAssignment
     | if_
     | loop
+    | function
     | functionCall
     | COMMENT
     | NEWLINE; // shouldn't be here.. but it is
@@ -94,4 +97,5 @@ expr
     | left=expr op=(ADD | SUB) right=expr
     | left=expr op=(LT | LTE | GTE | GT | EQ | NEQ) right=expr
     | left=expr op=( AND | OR ) right=expr
+    | ROUND_LEFT nested=expr ROUND_RIGHT
     | bool | number | stringLiteral | id ;

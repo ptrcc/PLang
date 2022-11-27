@@ -28,6 +28,16 @@ public interface PLangListener extends ParseTreeListener {
 	 */
 	void exitBlock(PLangParser.BlockContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PLangParser#function}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction(PLangParser.FunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PLangParser#function}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction(PLangParser.FunctionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PLangParser#funcBlock}.
 	 * @param ctx the parse tree
 	 */
