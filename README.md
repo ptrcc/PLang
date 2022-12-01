@@ -12,15 +12,15 @@ but it is a fun language to play around with.
 
 **PLang** uses [Antlr4](https://www.antlr.org/) to parse the code.
 The grammar is in [PLang.g4](./src/main/antlr/PLang.g4) file.
-The generated Antlr4 files are located in [src/main/java](./src/main/java).
+The generated Antlr4 files are located in [build/generated-src/antlr/main](build/generated-src/antlr/main).
 
 The ANTLR files will be generated automatically when executing any tests or building the project using gradle.
 To generate the files, without building the project use the gradle task `generateGrammarSource`.
 
 ## Usage 
 
-**PLang** can be evaluated using the `PLang` class.
-The `PLang` class has a `evaluate` method that 
+**PLang** can be evaluated using the `PLangEvaluator` class.
+The `PLangEvaluator` class has an `evaluate` method that 
 takes a `String` or an `InputStream` and an optional`PLangContext` as input.
 
 ### PLangContext

@@ -6,8 +6,8 @@ import kotlin.test.assertFailsWith
 
 internal class VariableTest {
 
-    private val plang = PLang()
-    lateinit var ctx: PLangContext
+    private val plang = PLangEvaluator()
+    private lateinit var ctx: PLangContext
 
     @BeforeEach
     fun setup() {

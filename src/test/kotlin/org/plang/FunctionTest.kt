@@ -2,12 +2,11 @@ package org.plang
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import kotlin.test.assertFailsWith
 
 internal class FunctionTest {
 
-    private val plang = PLang()
-    lateinit var ctx: PLangContext
+    private val plang = PLangEvaluator()
+    private lateinit var ctx: PLangContext
 
     @BeforeEach
     fun setup() {

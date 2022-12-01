@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test
 
 internal class LoopTest {
 
-    private val plang = PLang()
-    lateinit var ctx: PLangContext
+    private val plang = PLangEvaluator()
+    private lateinit var ctx: PLangContext
     private var counter: Int = 0
 
     @BeforeEach

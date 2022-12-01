@@ -3,7 +3,7 @@ package org.plang.api
 import org.plang.PLangContext
 import java.io.InputStream
 
-interface LanguageEvaluator {
+interface LangEvaluator {
 
     fun evaluate(input: String, ctx: PLangContext = PLangContext()): List<Any>
 

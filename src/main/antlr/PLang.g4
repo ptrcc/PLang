@@ -57,10 +57,6 @@ program: block EOF;
 
 block : statement* ;
 
-function: DEF name=id ROUND_LEFT (id (COMMA id)*)? ROUND_RIGHT funcBlock ;
-
-funcBlock: CURLY_LEFT block CURLY_RIGHT ;
-
 statement
     : variable
     | variableAssignment
@@ -72,11 +68,16 @@ statement
     | COMMENT
     | NEWLINE; // shouldn't be here.. but it is
 
+
 stringLiteral : STRINGLITERAL ;
 number : NUMBER ;
 bool : TRUE | FALSE ;
 
 id : ID ;
+
+funcBlock: CURLY_LEFT block CURLY_RIGHT ;
+
+function: DEF name=id ROUND_LEFT (id (COMMA id)*)? ROUND_RIGHT funcBlock ; // not implemented yet
 
 functionCall : id ROUND_LEFT (expr (COMMA expr)*)? ROUND_RIGHT ;
 

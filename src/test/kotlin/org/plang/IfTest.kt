@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test
 
 internal class IfTest {
 
-    private val plang = PLang()
-    lateinit var ctx: PLangContext
-    lateinit var called: Any
+    private val plang = PLangEvaluator()
+    private lateinit var ctx: PLangContext
+    private lateinit var called: Any
     private var counter: Int = 0
 
     @BeforeEach

@@ -3,11 +3,11 @@ package org.plang
 import org.antlr.v4.runtime.CharStreams
 import org.antlr.v4.runtime.CommonTokenStream
 import org.plang.api.AST
-import org.plang.api.LanguageEvaluator
+import org.plang.api.LangEvaluator
 import java.io.InputStream
 
 
-class PLang: LanguageEvaluator {
+class PLangEvaluator: LangEvaluator {
 
     private fun createAST(inputStream: InputStream): List<AST> {
         val input = CharStreams.fromStream(inputStream)
