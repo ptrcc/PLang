@@ -3,7 +3,7 @@ package org.plang
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-internal class FunctionTest {
+internal class KtFunctionTest {
 
     private val plang = PLangEvaluator()
     private lateinit var ctx: PLangContext

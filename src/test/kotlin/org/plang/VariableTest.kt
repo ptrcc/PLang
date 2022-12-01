@@ -17,28 +17,28 @@ internal class VariableTest {
     @Test
     fun `variable declaration without value`() {
         plang.evaluate("def test_variable", ctx)
-        assert(ctx.getVariables().size == 1)
+        assert(ctx.variables.size == 1)
     }
 
     @Test
     fun `variable assignment with string value`() {
         plang.evaluate("""def test_variable = "abc"""", ctx)
-        assert(ctx.getVariables().size == 1)
-        assert(ctx.getVariables()["test_variable"] == "abc")
+        assert(ctx.variables.size == 1)
+        assert(ctx.variables["test_variable"] == "abc")
     }
 
     @Test
     fun `variable assignment with number value`() {
         plang.evaluate("def test_variable = 1108", ctx)
-        assert(ctx.getVariables().size == 1)
-        assert(ctx.getVariables()["test_variable"] == 1108.0)
+        assert(ctx.variables.size == 1)
+        assert(ctx.variables["test_variable"] == 1108.0)
     }
 
     @Test
     fun `variable assignment with boolean value`() {
         plang.evaluate("def test_variable = false", ctx)
-        assert(ctx.getVariables().size == 1)
-        assert(ctx.getVariables()["test_variable"] == false)
+        assert(ctx.variables.size == 1)
+        assert(ctx.variables["test_variable"] == false)
     }
 
     @Test
@@ -52,13 +52,13 @@ internal class VariableTest {
             def test_variable_div = 10 / 2
             def test_variable_brace = 3 * (5 + 4)
         """, ctx)
-        assert(ctx.getVariables()["test_variable_add"] == 4.0)
-        assert(ctx.getVariables()["test_variable_add_1"] == 7.0)
-        assert(ctx.getVariables()["test_variable_sub"] == -2.0)
-        assert(ctx.getVariables()["test_variable_mul"] == 6.0)
-        assert(ctx.getVariables()["test_variable_mul_1"] == 12.0)
-        assert(ctx.getVariables()["test_variable_div"] == 5.0)
-        assert(ctx.getVariables()["test_variable_brace"] == 27.0)
+        assert(ctx.variables["test_variable_add"] == 4.0)
+        assert(ctx.variables["test_variable_add_1"] == 7.0)
+        assert(ctx.variables["test_variable_sub"] == -2.0)
+        assert(ctx.variables["test_variable_mul"] == 6.0)
+        assert(ctx.variables["test_variable_mul_1"] == 12.0)
+        assert(ctx.variables["test_variable_div"] == 5.0)
+        assert(ctx.variables["test_variable_brace"] == 27.0)
     }
 
     @Test
@@ -69,9 +69,9 @@ internal class VariableTest {
            def test_variable_2 = test_variable_1
         """, ctx
         )
-        assert(ctx.getVariables().size == 2)
-        assert(ctx.getVariables()["test_variable_1"] == "abc")
-        assert(ctx.getVariables()["test_variable_2"] == "abc")
+        assert(ctx.variables.size == 2)
+        assert(ctx.variables["test_variable_1"] == "abc")
+        assert(ctx.variables["test_variable_2"] == "abc")
     }
     @Test
     fun `variable reassignment with exiting variable`() {
@@ -83,10 +83,10 @@ internal class VariableTest {
            test_variable_1 = test_variable_3
         """, ctx
         )
-        assert(ctx.getVariables().size == 3)
-        assert(ctx.getVariables()["test_variable_1"] == 1108.0)
-        assert(ctx.getVariables()["test_variable_2"] == "abc")
-        assert(ctx.getVariables()["test_variable_3"] == 1108.0)
+        assert(ctx.variables.size == 3)
+        assert(ctx.variables["test_variable_1"] == 1108.0)
+        assert(ctx.variables["test_variable_2"] == "abc")
+        assert(ctx.variables["test_variable_3"] == 1108.0)
     }
 
     @Test
@@ -110,8 +110,8 @@ internal class VariableTest {
             def test_variable_2 = "abc"
         """, ctx
         )
-        assert(ctx.getVariables().size == 2)
-        assert(ctx.getVariables()["test_variable_1"] == 1108.0)
-        assert(ctx.getVariables()["test_variable_2"] == "abc")
+        assert(ctx.variables.size == 2)
+        assert(ctx.variables["test_variable_1"] == 1108.0)
+        assert(ctx.variables["test_variable_2"] == "abc")
     }
 }

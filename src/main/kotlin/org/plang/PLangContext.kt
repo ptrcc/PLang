@@ -1,9 +1,11 @@
 package org.plang
 
-class PLangContext(initialVariables: Map<String, Any?> = mapOf()) {
+import org.plang.ast.function.KtFunction
+import org.plang.ast.function.PLangFunction
 
-    private val variables = mutableMapOf<String, Any?>()
-    private val functionRegistry = FunctionRegistry()
+class PLangContext(initialVariables: Map<String, Any?> = mapOf(), val functionRegistry: FunctionRegistry = FunctionRegistry()) {
+
+    val variables = mutableMapOf<String, Any?>()
 
     init {
         variables.putAll(initialVariables)
@@ -11,37 +13,37 @@ class PLangContext(initialVariables: Map<String, Any?> = mapOf()) {
     }
 
     private fun defaultFunctions() {
-        functionRegistry.registerFunction("out") { arg ->
+        functionRegistry.register("out", KtFunction({ arg: String ->
             println(arg)
-        }
+        }))
+    }
+
+    fun addFunction(name: String, function: PLangFunction) {
+        functionRegistry.register(name, function)
     }
 
     fun addFunction(name: String, function: (Any) -> Any?) {
-        functionRegistry.registerFunction(name, function)
+        functionRegistry.register(name, KtFunction(function))
     }
 
     fun addFunction(name: String, function: () -> Any?) {
-        functionRegistry.registerFunction(name, function)
+        functionRegistry.register(name, KtFunction(function))
     }
 
     fun addFunction(name: String, function: (Any, Any) -> Any?) {
-        functionRegistry.registerFunction(name, function)
+        functionRegistry.register(name, KtFunction(function))
     }
 
-    fun callFunction(name: String, args: List<Any?>): Any {
-        return functionRegistry.callFunction(name, args)
+    fun callFunction(name: String, args: List<Any>): Any {
+        return functionRegistry.callFunction(name, args, this)
     }
 
-    fun setVariable(name: String, value: Any?) {
+    fun addVariable(name: String, value: Any?) {
         variables[name] = value
     }
 
     fun getVariable(name: String): Any {
         return variables[name] ?: throw RuntimeException("Variable $name not found")
-    }
-
-    fun getVariables(): Map<String, Any?> {
-        return variables
     }
 
 }

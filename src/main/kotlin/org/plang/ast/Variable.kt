@@ -10,9 +10,9 @@ class Variable(
 
     override fun evaluate(ctx: PLangContext): Any {
         if (value != null) {
-            ctx.setVariable(name, value.evaluate(ctx))
+            ctx.addVariable(name, value.evaluate(ctx))
         } else {
-            ctx.setVariable(name, null)
+            ctx.addVariable(name, null)
         }
         return Unit
     }

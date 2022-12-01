@@ -68,6 +68,21 @@ def z = y * 3
 x = "bar"
 ```
 
+### Functions 
+
+Functions are declared with the `def` keyword.
+At the moment it's possible to define functions with zero, one or two parameters.
+
+```plang
+def function_1 (arg) {
+    function_2(arg)
+}
+def function_2 (arg) {
+    out(arg)
+}
+function_1("argument")
+```
+
 ### Conditionals
 
 Conditionals are declared with the `if` keyword.

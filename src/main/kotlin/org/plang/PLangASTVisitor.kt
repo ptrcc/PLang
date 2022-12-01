@@ -3,6 +3,8 @@ package org.plang
 import org.plang.api.AST
 import org.plang.ast.*
 import org.plang.ast.Number
+import org.plang.ast.function.FunctionCall
+import org.plang.ast.function.PLangFunction
 import org.plang.ast.if_ast.Else
 import org.plang.ast.if_ast.ElseIf
 import org.plang.ast.if_ast.If
@@ -76,6 +78,13 @@ class PLangASTVisitor : PLangBaseVisitor<List<AST>>() {
     override fun visitFunctionCall(ctx: PLangParser.FunctionCallContext?): List<AST> {
         val args = ctx!!.expr().map { visit(it)[0] }
         return listOf(FunctionCall(ctx.id().text, args))
+    }
+
+    override fun visitFunction(ctx: PLangParser.FunctionContext?): List<AST> {
+        val name = ctx!!.name.text
+        val args = ctx.id().map { it.text }.subList(1, ctx.id().size)
+        val asts = visit(ctx.funcBlock())
+        return listOf(PLangFunction(name, args, asts))
     }
 
     override fun visitIf_(ctx: PLangParser.If_Context?): List<AST> {

@@ -1,4 +1,4 @@
-package org.plang.ast
+package org.plang.ast.function
 
 import org.plang.PLangContext
 import org.plang.api.AST

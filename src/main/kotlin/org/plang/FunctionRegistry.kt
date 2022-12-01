@@ -1,34 +1,22 @@
 package org.plang
 
+import org.plang.api.IFunction
+
 class FunctionRegistry {
 
-    private val functions = mutableMapOf<String, Any>()
+    private val functions = mutableMapOf<String, IFunction>()
 
-    fun registerFunction(name: String, function: () -> Any?) {
+    fun register(name: String, function: IFunction) {
         functions[name] = function
     }
 
-    fun registerFunction(name: String, function: (arg1: Any) -> Any?) {
-        functions[name] = function
-    }
-
-    fun registerFunction(name: String, function: (arg1: Any, arg2: Any) -> Any?) {
-        functions[name] = function
-    }
-
-    private fun getFunction(name: String): Any {
+    private fun resolve(name: String): IFunction {
         return functions[name] ?: throw RuntimeException("Function $name not found")
     }
 
-    fun callFunction(name: String, args: List<Any?>): Any {
-        val function = getFunction(name)
-        // Sadly I don't know how to do this in a more elegant way
-        return when (args.size) {
-            0 -> (function as () -> Any)()
-            1 -> (function as (arg1: Any) -> Any)(args[0]!!)
-            2 -> (function as (arg1: Any, arg2: Any) -> Any)(args[0]!!, args[1]!!)
-            else -> throw RuntimeException("Function $name does not support ${args.size} arguments")
-        }
+    fun callFunction(name: String, args: List<Any>, ctx: PLangContext): Any {
+        val function = resolve(name)
+        return function.run(args, ctx)
     }
 
 }
