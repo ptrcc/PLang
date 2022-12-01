@@ -19,15 +19,14 @@ To generate the files, without building the project use the gradle task `generat
 
 ## Usage 
 
-**PLang** can be evaluated using the `PLangEvaluator` class.
-The `PLangEvaluator` class has an `evaluate` method that 
-takes a `String` or an `InputStream` and an optional`PLangContext` as input.
+**PLang** can be evaluated using the [`PLangEvaluator`](./src/main/kotlin/org/plang/PLangEvaluator.kt) class which has an `evaluate` method that 
+takes a `String` or an `InputStream` and an optional [`PLangContext`](./src/main/kotlin/org/plang/PLangContext.kt) as input.
 
 ### PLangContext
 
-The `PLangContext` is a class that holds the variables and functions.
-You can set variables using the `setVariable` method and get them using the `getVariable` method. \
-Functions can be set using the `setFunction` method and called using the `callFunction` method.
+The [`PLangContext`](./src/main/kotlin/org/plang/PLangContext.kt) is a class that holds the variables and functions.
+You can set variables using the `addVariable` method and get them using the `getVariable` method. \
+Functions can be set using the `addFunction` method and called using the `callFunction` method.
 At the moment only functions with no, one or two arguments are supported.
 
 ### Example
@@ -36,9 +35,9 @@ At the moment only functions with no, one or two arguments are supported.
 val result = 0
 
 val ctx = PLangContext()
-ctx.setVariable("a", 1)
-ctx.setVariable("b", 2)
-ctx.setFunction("add", { arg1, arg2 -> result = arg1 + arg2 })
+ctx.addVariable("a", 1)
+ctx.addVariable("b", 2)
+ctx.addFunction("add", { arg1, arg2 -> result = arg1 + arg2 })
 
 val result = PLangEvaluator().evaluate("""
     add(a, b)
