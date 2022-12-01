@@ -14,7 +14,8 @@ but it is a fun language to play around with.
 The grammar is in [PLang.g4](./src/main/antlr/PLang.g4) file.
 The generated Antlr4 files are located in [src/main/java](./src/main/java).
 
-To generate the files, run `antlr4 PLang.g4 -o ../java/org/plang -package org.plang -visitor`.
+The ANTLR files will be generated automatically when executing any tests or building the project using gradle.
+To generate the files, without building the project use the gradle task `generateGrammarSource`.
 
 ## Usage 
 

@@ -1,14 +1,14 @@
 package org.plang.ast.if_ast
 
 import org.plang.PLangContext
-import org.plang.ast.AST
+import org.plang.api.AST
 
 class If(
     private val condition: AST,
     private val statements: List<AST>,
     private val elseIf: List<AST>? = null,
     private val else_: List<AST>? = null
-) : AST() {
+) : AST {
 
     override fun evaluate(ctx: PLangContext) {
         if (condition.evaluate(ctx) as Boolean) {
@@ -16,7 +16,7 @@ class If(
             return
         } else if (!elseIf.isNullOrEmpty()) {
             elseIf.forEach {
-                if(it.evaluate(ctx) as Boolean) {
+                if (it.evaluate(ctx) as Boolean) {
                     return
                 }
             }

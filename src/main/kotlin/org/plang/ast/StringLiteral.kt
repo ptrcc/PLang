@@ -1,8 +1,9 @@
 package org.plang.ast
 
 import org.plang.PLangContext
+import org.plang.api.AST
 
-class StringLiteral(private var value: String) : AST() {
+class StringLiteral(private var value: String) : AST {
 
     override fun evaluate(ctx: PLangContext): Any {
         return removeQuotes(value)

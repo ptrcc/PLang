@@ -1,12 +1,13 @@
 package org.plang.ast
 
 import org.plang.PLangContext
+import org.plang.api.AST
 
 class Expr(
     private val left: AST,
     private val right: AST,
     private val op: String
-) : AST() {
+) : AST {
 
     override fun evaluate(ctx: PLangContext): Any {
         when (op) {

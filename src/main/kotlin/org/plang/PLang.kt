@@ -2,31 +2,35 @@ package org.plang
 
 import org.antlr.v4.runtime.CharStreams
 import org.antlr.v4.runtime.CommonTokenStream
-import org.plang.ast.AST
+import org.plang.api.AST
+import org.plang.api.LanguageEvaluator
 import java.io.InputStream
 
 
-class PLang {
+class PLang: LanguageEvaluator {
 
-    private fun evaluateAST(inputStream: InputStream): List<AST> {
+    private fun createAST(inputStream: InputStream): List<AST> {
         val input = CharStreams.fromStream(inputStream)
-        val lexer = PLangLexer(input)
+        val lexer = org.plang.PLangLexer(input)
         val tokens = CommonTokenStream(lexer)
-        val parser = PLangParser(tokens)
+        val parser = org.plang.PLangParser(tokens)
         val visitor = PLangASTVisitor()
 
         return visitor.visit(parser.program())
     }
 
-    fun evaluate(input: String, ctx: PLangContext = PLangContext()): List<Any> {
-        return evaluate(input.byteInputStream(), ctx)
-    }
-
-    fun evaluate(inputStream: InputStream, ctx: PLangContext = PLangContext()): List<Any> {
-        val ast = evaluateAST(inputStream)
+    private fun evaluateAST(ast: List<AST>, ctx: PLangContext): List<Any> {
         return ast.map {
             it.evaluate(ctx)
         }
+    }
+
+    override fun evaluate(input: String, ctx: PLangContext): List<Any> {
+        return evaluate(input.byteInputStream(), ctx)
+    }
+
+    override fun evaluate(inputStream: InputStream, ctx: PLangContext): List<Any> {
+        return evaluateAST(createAST(inputStream), ctx)
     }
 
 

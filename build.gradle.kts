@@ -14,10 +14,6 @@ repositories {
 tasks.generateGrammarSource {
     maxHeapSize = "64m"
     arguments = arguments + listOf("-visitor", "-long-messages", "-package", "org.plang")
-    copy {
-        from("${buildDir}/generated-src/antlr/main")
-        into("src/main/java/org/plang")
-    }
 }
 
 sourceSets.main {
