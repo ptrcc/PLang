@@ -10,17 +10,15 @@ class PLangFunction(
     private val statements: List<AST>
 ) : AST, IFunction {
 
-    override fun evaluate(ctx: PLangContext) {
+    override fun evaluate(ctx: PLangContext) =
         ctx.addFunction(this.name, this)
-    }
 
-    override fun run(args: List<Any>, ctx: PLangContext): Any {
+    override fun run(args: List<Any>, ctx: PLangContext) {
         val localCtx = PLangContext(ctx.variables, ctx.functionRegistry)
         argNames.forEachIndexed { index, argName ->
             localCtx.addVariable(argName, args[index])
         }
         statements.forEach { it.evaluate(localCtx) }
-        return Unit
     }
 
 }

@@ -5,12 +5,10 @@ import org.plang.api.AST
 
 class StringLiteral(private var value: String) : AST {
 
-    override fun evaluate(ctx: PLangContext): Any {
-        return removeQuotes(value)
-    }
+    override fun evaluate(ctx: PLangContext) =
+        removeQuotes(value)
 
-    private fun removeQuotes(value: String): String {
-        return value.removePrefix("\"").removeSuffix("\"")
-    }
+    private fun removeQuotes(value: String) =
+        value.removePrefix("\"").removeSuffix("\"")
 
 }

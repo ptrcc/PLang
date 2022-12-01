@@ -8,8 +8,10 @@ class FunctionCall(
     private val args: List<AST>
 ) : AST {
 
-    override fun evaluate(ctx: PLangContext): Any {
-        return ctx.callFunction(name, args.map { it.evaluate(ctx) })
-    }
+    override fun evaluate(ctx: PLangContext) =
+        ctx.callFunction(
+            name,
+            args.map { it.evaluate(ctx) }
+        )
 
 }

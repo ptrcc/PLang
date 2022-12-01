@@ -7,7 +7,7 @@ import org.plang.api.LangEvaluator
 import java.io.InputStream
 
 
-class PLangEvaluator: LangEvaluator {
+class PLangEvaluator : LangEvaluator {
 
     private fun createAST(inputStream: InputStream): List<AST> {
         val input = CharStreams.fromStream(inputStream)
@@ -19,19 +19,16 @@ class PLangEvaluator: LangEvaluator {
         return visitor.visit(parser.program())
     }
 
-    private fun evaluateAST(ast: List<AST>, ctx: PLangContext): List<Any> {
-        return ast.map {
-            it.evaluate(ctx)
-        }
-    }
+    private fun evaluateAST(ast: List<AST>, ctx: PLangContext) =
+        ast.map { it.evaluate(ctx) }
 
-    override fun evaluate(input: String, ctx: PLangContext): List<Any> {
-        return evaluate(input.byteInputStream(), ctx)
-    }
+    override fun evaluate(input: String, ctx: PLangContext) =
+        evaluate(input.byteInputStream(), ctx)
 
-    override fun evaluate(inputStream: InputStream, ctx: PLangContext): List<Any> {
-        return evaluateAST(createAST(inputStream), ctx)
-    }
-
+    override fun evaluate(inputStream: InputStream, ctx: PLangContext) =
+        evaluateAST(
+            ast = createAST(inputStream),
+            ctx = ctx
+        )
 
 }

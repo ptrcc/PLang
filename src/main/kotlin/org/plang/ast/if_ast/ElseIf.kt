@@ -8,13 +8,12 @@ class ElseIf(
     private val statements: List<AST>
 ) : AST {
 
-    override fun evaluate(ctx: PLangContext): Boolean {
-        return if (condition.evaluate(ctx) as Boolean) {
+    override fun evaluate(ctx: PLangContext) =
+        if (condition.evaluate(ctx) as Boolean) {
             statements.forEach { it.evaluate(ctx) }
             true
         } else {
-            false;
+            false
         }
-    }
 
 }

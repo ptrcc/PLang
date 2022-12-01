@@ -24,8 +24,6 @@ class If(
         callElse(ctx)
     }
 
-    private fun callElse(ctx: PLangContext) {
-        else_?.forEach { it.evaluate(ctx) }
-    }
+    private fun callElse(ctx: PLangContext) = else_?.forEach { it.evaluate(ctx) }
 
 }

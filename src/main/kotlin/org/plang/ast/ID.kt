@@ -5,8 +5,7 @@ import org.plang.api.AST
 
 class ID(private var id: String) : AST {
 
-    override fun evaluate(ctx: PLangContext): Any {
-        return ctx.getVariable(id)
-    }
+    override fun evaluate(ctx: PLangContext) =
+        ctx.getVariable(id)
 
 }

@@ -5,8 +5,7 @@ import org.plang.api.AST
 
 class Bool(private var value: String) : AST {
 
-    override fun evaluate(ctx: PLangContext): Boolean {
-        return value.toBoolean()
-    }
+    override fun evaluate(ctx: PLangContext) =
+        value.toBoolean()
 
 }

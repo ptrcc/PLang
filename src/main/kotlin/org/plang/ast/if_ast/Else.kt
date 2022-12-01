@@ -7,8 +7,7 @@ class Else(
     private val statements: List<AST>
 ) : AST {
 
-    override fun evaluate(ctx: PLangContext) {
+    override fun evaluate(ctx: PLangContext) =
         statements.forEach { it.evaluate(ctx) }
-    }
 
 }
