@@ -39,7 +39,7 @@ ctx.addVariable("a", 1)
 ctx.addVariable("b", 2)
 ctx.addFunction("add", { arg1, arg2 -> result = arg1 + arg2 })
 
-val result = PLangEvaluator().evaluate("""
+PLangEvaluator().evaluate("""
     add(a, b)
 """, ctx)
 println(result) // 3
