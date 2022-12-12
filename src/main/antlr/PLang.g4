@@ -1,5 +1,4 @@
 // generate java files:
-// antlr4 PLang.g4 -o ../java/org/plang -package org.plang -visitor
 
 grammar PLang;
 
