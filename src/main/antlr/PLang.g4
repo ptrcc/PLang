@@ -77,7 +77,7 @@ id : ID ;
 
 funcBlock: CURLY_LEFT block CURLY_RIGHT ;
 
-function: DEF name=id ROUND_LEFT (id (COMMA id)*)? ROUND_RIGHT funcBlock ; // not implemented yet
+function: DEF name=id ROUND_LEFT (id (COMMA id)*)? ROUND_RIGHT funcBlock ;
 
 functionCall : id ROUND_LEFT (expr (COMMA expr)*)? ROUND_RIGHT ;
 
@@ -99,4 +99,4 @@ expr
     | left=expr op=(LT | LTE | GTE | GT | EQ | NEQ) right=expr
     | left=expr op=( AND | OR ) right=expr
     | ROUND_LEFT nested=expr ROUND_RIGHT
-    | bool | number | stringLiteral | id ;
+    | bool | number | stringLiteral | id | functionCall ;
