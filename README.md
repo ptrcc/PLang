@@ -1,8 +1,6 @@
 # PLang
 
-**by Patrick Arbeiter**
-
-PLang is a simple programming language that I made for MDDEV.
+PLang is a simple programming language that I made in course of a university course (MDDEV).
 It supports all the basic operations like conditionals, loops, and functions.
 It also supports variables, but they are not required.
 It is not meant to be used for anything serious,
